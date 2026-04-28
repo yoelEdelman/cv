@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yoel Edelman — Développeur Web Full Stack</title>
+  <meta name="description" content="CV de Yoel Edelman, Développeur Web Full Stack avec 6 ans d'expérience. Laravel, VueJs, NuxtJs, PHP.">
+  <meta property="og:title" content="Yoel Edelman — Développeur Web Full Stack">
+  <meta property="og:description" content="6 ans d'expérience en développement web full stack. Laravel, VueJs, NuxtJs, PHP.">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://yoeledelman.github.io/cv-yoel/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Yoel Edelman — Développeur Web Full Stack">
+  <meta name="twitter:description" content="6 ans d'expérience. Laravel, VueJs, NuxtJs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;0,700;1,300&family=Inter:wght@400;500&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0D1117; --surface: #161B22; --surface-2: #1C2129; --border: #30363D;
+      --primary: #58A6FF; --accent: #3FB950; --warn: #F78166;
+      --text: #F0F6FC; --text-muted: #8B949E; --text-dim: #484F58;
+      --sidebar-w: 300px; --radius: 8px; --radius-sm: 4px;
+      --space-xs: 4px; --space-sm: 8px; --space-md: 16px;
+      --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.9rem; line-height: 1.6; min-height: 100vh; }
+    a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--primary); text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 2px; }
+    .cv-wrapper { max-width: 1200px; margin: 0 auto; display: flex; min-height: 100vh; padding: var(--space-lg); gap: var(--space-lg); }
+    .sidebar { width: var(--sidebar-w); flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: var(--space-lg); background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); display: flex; flex-direction: column; gap: var(--space-lg); scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .profile { text-align: center; }
+    .profile-photo { width: 110px; height: 110px; border-radius: 50%; border: 2px solid var(--primary); box-shadow: 0 0 0 4px rgba(88,166,255,0.15); object-fit: cover; margin-bottom: var(--space-md); }
+    .profile h1 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--text); letter-spacing: 0.02em; line-height: 1.2; }
+    .profile-title { font-family: 'Poppins', sans-serif; font-weight: 300; font-style: italic; font-size: 0.9rem; color: var(--text-muted); margin-top: var(--space-xs); }
+    .profile-badge { display: inline-block; margin-top: var(--space-sm); padding: 3px 10px; background: rgba(88,166,255,0.1); color: var(--primary); border-radius: 20px; font-size: 0.78rem; font-family: 'Fira Code', monospace; }
+    .sidebar-section { display: flex; flex-direction: column; gap: var(--space-sm); }
+    .sidebar-section-title { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary); padding-bottom: var(--space-xs); border-bottom: 1px solid var(--border); }
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); }
+    .contact-list li a { display: flex; align-items: center; gap: var(--space-sm); color: var(--text-muted); font-size: 0.82rem; transition: color 0.2s; }
+    .contact-list li a:hover { color: var(--primary); text-decoration: none; }
+    .contact-list svg { flex-shrink: 0; width: 14px; height: 14px; }
+    .pills { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+    .pill { padding: 2px 10px; background: rgba(88,166,255,0.1); color: var(--primary); border-radius: 20px; font-size: 0.75rem; font-family: 'Fira Code', monospace; }
+    .pill-green { background: rgba(63,185,80,0.1); color: var(--accent); }
+    .skill-group { margin-bottom: var(--space-sm); }
+    .skill-category { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 3px; }
+    .skill-items { font-size: 0.82rem; color: var(--text); line-height: 1.5; }
+    details summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after { content: '▶'; font-size: 0.7rem; color: var(--text-muted); transition: transform 0.2s; }
+    details[open] summary::after { transform: rotate(90deg); }
+    .lang-pills { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+    .lang-pill { padding: 4px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; font-size: 0.78rem; color: var(--text); }
+    .atouts { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+    .atout-pill { padding: 4px 10px; background: rgba(63,185,80,0.08); color: var(--accent); border-radius: 20px; font-size: 0.78rem; }
+    .main-content { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--space-xl); padding: var(--space-lg) 0; }
+    .section { animation: fadeInUp 0.4s ease both; }
+    .section:nth-child(1) { animation-delay: 0.05s; }
+    .section:nth-child(2) { animation-delay: 0.15s; }
+    .section:nth-child(3) { animation-delay: 0.25s; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { .section { animation: none; } }
+    .section-header { display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md); }
+    .section-title { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--primary); }
+    .section-diamond { color: var(--primary); font-size: 0.8rem; }
+    .section-divider { flex: 1; height: 1px; background: var(--border); }
+    .about-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; }
+    .cards-list { display: flex; flex-direction: column; gap: var(--space-md); }
+    .card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: var(--radius); padding: var(--space-md); transition: background 0.2s; }
+    .card:hover { background: var(--surface-2); }
+    .card-formation { border-left-color: var(--accent); }
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-sm); margin-bottom: var(--space-xs); flex-wrap: wrap; }
+    .card-company { font-weight: 500; font-size: 0.95rem; color: var(--text); }
+    .card-date { font-family: 'Fira Code', monospace; font-size: 0.78rem; color: var(--warn); white-space: nowrap; }
+    .card-title { font-style: italic; color: var(--text-muted); font-size: 0.85rem; margin-bottom: var(--space-sm); }
+    .card-subtitle { font-size: 0.82rem; color: var(--text-muted); margin-bottom: var(--space-xs); }
+    .card-missions { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: var(--space-sm); }
+    .card-missions li { font-size: 0.875rem; color: var(--text); padding-left: var(--space-md); position: relative; }
+    .card-missions li::before { content: '•'; position: absolute; left: 4px; color: var(--primary); }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: var(--space-sm); }
+    .tag { font-family: 'Fira Code', monospace; font-size: 0.72rem; color: var(--accent); background: rgba(63,185,80,0.1); padding: 2px 8px; border-radius: var(--radius-sm); }
+    footer { text-align: center; padding: var(--space-xl) 0 var(--space-lg); color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: var(--space-xl); }
+    @media (max-width: 767px) {
+      .cv-wrapper { flex-direction: column; padding: var(--space-md); gap: var(--space-md); }
+      .sidebar { width: 100%; position: static; height: auto; }
+      .profile-photo { width: 90px; height: 90px; }
+      .main-content { padding: 0; }
+    }
+    @media print {
+      body { background: #fff; color: #000; font-size: 0.8rem; }
+      .cv-wrapper { padding: 0; max-width: none; }
+      .sidebar { background: #f5f5f5; border: 1px solid #ddd; position: static; height: auto; width: 220px; break-inside: avoid; }
+      .section-title, .sidebar-section-title { color: #1a1a1a; }
+      .card { background: #fff; border-color: #ccc; border-left-color: #333; break-inside: avoid; }
+      .card-formation { border-left-color: #555; }
+      .tag, .pill { background: transparent; border: 1px solid #ccc; color: #333; }
+      .lang-pill, .atout-pill, .profile-badge { background: transparent; border: 1px solid #ccc; color: #333; }
+      a { color: #000; text-decoration: none; }
+      a[href^="mailto"]::after { content: " (" attr(href) ")"; font-size: 0.7rem; }
+      .section { animation: none; }
+      footer { color: #666; border-top-color: #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-wrapper">
+    <aside class="sidebar" aria-label="Informations personnelles">
+      <div class="profile">
+        <img class="profile-photo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCACWAFADASIAAhEBAxEB/8QAHAAAAgMBAQEBAAAAAAAAAAAAAAUEBgcDAgH/xAAyEAACAQMDAwMDAwMFAQAAAAABAgMABBEFEiExBhNBUWEicYGRFCMyQqGxwdHh8P/EABsBAAIDAQEBAAAAAAAAAAAAAAQFAgMGAAH/xAApEQACAgEDAwMEAwAAAAAAAAABAgADEQQSITFBBRMiUWGBkcHR4f/aAAwDAQACEQMRAD8A2WiiiikBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABVHxH4isvD1sJbonc3SNGMM31HtWuqdq+g2Oq2bQXkIdSMBsbgfqKpuqKXuFXTSXuFpF5k+oq0a8SeF/FE1tqSW+oO0kErbQznJjb0NesUoUMkEHkV5deWlxYXT21yhSVDgg1faf4s1OwKoZPaijCZ5A9q8/m3dnpMrGUdVqm7Ev4kl6FTVLq+1C81K2tbeae2tWZJmgjLbWH8hx7VHsdKvNVvI7OzhaWZzwF6D6n0roPgxYdE0VNSuYiLm8YMCw5EfYD+tdhbWsFrF2W8Sh35OOnuaVkfMZ19THRVnzqTFxdTSRJWBLRFbkjuvvTLUI2kspFTl8ZA96nVH0qT7RbFSctGcGr1OkXMz+i3kWoWaXEI+Fug9RVqvJ/Bu1rTxJPp8h5WG5yh9gep/avWK6aFpNhERuDVGiiijQFFFFABRRRQAUUUUAFFFFABRRRQB//2Q==" alt="Photo de Yoel Edelman" width="110" height="110">
+        <h1>EDELMAN Yoel</h1>
+        <p class="profile-title">Développeur Web Full Stack</p>
+        <span class="profile-badge">6 ans d'expérience</span>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-section-title">Contact</p>
+        <ul class="contact-list">
+          <li><a href="tel:0675202887" aria-label="Appeler Yoel Edelman"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.12 1.18 2 2 0 012.11 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.1a16 16 0 006 6l.46-.46a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>06 75 20 28 87</a></li>
+          <li><a href="mailto:yoeledelman@gmail.com" aria-label="Envoyer un email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>yoeledelman@gmail.com</a></li>
+          <li><a href="https://www.google.com/maps/search/75003+Paris" target="_blank" rel="noopener noreferrer" aria-label="Localisation Paris"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>61 Bvd Beaumarchais, 75003 Paris</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-section-title">Spécialités</p>
+        <div class="pills"><span class="pill">Laravel</span><span class="pill">VueJs</span></div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-section-title">Compétences</p>
+        <details open>
+          <summary class="sidebar-section-title" style="font-size:0.7rem;border:none;padding:0;margin-bottom:var(--space-sm)">Voir les compétences</summary>
+          <div style="margin-top:var(--space-sm);display:flex;flex-direction:column;gap:var(--space-sm)">
+            <div class="skill-group"><p class="skill-category">Langages</p><p class="skill-items">HTML · CSS · SASS · JavaScript · PHP · WordPress</p></div>
+            <div class="skill-group"><p class="skill-category">Frameworks</p><p class="skill-items">Laravel · Symfony · Twig · VueJs · NuxtJs · Vuetify · Bootstrap · Tailwind · jQuery · Angular</p></div>
+            <div class="skill-group"><p class="skill-category">Base de données</p><p class="skill-items">MySQL · MariaDB · PostgreSQL · AWS · Firebase</p></div>
+            <div class="skill-group"><p class="skill-category">CI / CD</p><p class="skill-items">GitHub · GitLab · Docker</p></div>
+            <div class="skill-group"><p class="skill-category">Design</p><p class="skill-items">Figma · Adobe XD</p></div>
+            <div class="skill-group"><p class="skill-category">Mobile</p><p class="skill-items">React-Native · Ionic</p></div>
+          </div>
+        </details>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-section-title">Langues</p>
+        <div class="lang-pills">
+          <span class="lang-pill" role="img" aria-label="Français">🇫🇷 Français</span>
+          <span class="lang-pill" role="img" aria-label="Anglais">🇬🇧 Anglais</span>
+          <span class="lang-pill" role="img" aria-label="Hébreu">🇮🇱 Hébreu</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-section-title">Atouts</p>
+        <div class="atouts"><span class="atout-pill">Autonome</span><span class="atout-pill">Rigoureux</span><span class="atout-pill">Vif</span></div>
+      </div>
+    </aside>
+    <main class="main-content" aria-label="Contenu principal du CV">
+      <section class="section" aria-labelledby="about-title">
+        <div class="section-header"><span class="section-diamond" aria-hidden="true">◆</span><h2 class="section-title" id="about-title">À propos</h2><div class="section-divider" aria-hidden="true"></div></div>
+        <p class="about-text">Passionné par la création de solutions digitales innovantes, j'accompagne mes clients dans la conception et le développement de projets sur mesure. Grâce à mon adaptabilité et ma capacité d'anticipation, je propose des solutions pertinentes et assure la réussite de chaque mission.</p>
+      </section>
+      <section class="section" aria-labelledby="exp-title">
+        <div class="section-header"><span class="section-diamond" aria-hidden="true">◆</span><h2 class="section-title" id="exp-title">Expériences</h2><div class="section-divider" aria-hidden="true"></div></div>
+        <div class="cards-list">
+          <article class="card"><div class="card-header"><span class="card-company">AXA France</span><span class="card-date">Juin – Déc 2024</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Refonte de la plateforme interne de formation</li><li>Intégration de maquettes Figma</li><li>Développement de nouvelles fonctionnalités</li><li>API REST</li><li>Migration VueJS 2 → 3</li></ul><div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">SASS</span><span class="tag">JavaScript</span><span class="tag">VueJs</span><span class="tag">Vuetify</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">API REST</span></div></article>
+          <article class="card"><div class="card-header"><span class="card-company">Reenbow</span><span class="card-date">Juil 2023 – Mai 2024</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Développement de la plateforme LMS</li><li>Restructuration de l'existant et prise en charge de la dette technique</li><li>Migration PHP 7 → 8, Laravel 8 → 9</li><li>Intégration de maquettes Figma</li></ul><div class="card-tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">JavaScript</span><span class="tag">VueJs</span><span class="tag">Vuetify</span><span class="tag">MySQL</span><span class="tag">AWS</span></div></article>
+          <article class="card"><div class="card-header"><span class="card-company">Chanel</span><span class="card-date">Jan – Juin 2023</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Développement d'une plateforme digitale de gestion des réservations clients VIP</li><li>Développement V2 &amp; V3, refonte du système de facturation Stripe</li><li>Migration PHP 7 → 8, Symfony 5 → 6</li></ul><div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">jQuery</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Symfony</span></div></article>
+          <article class="card"><div class="card-header"><span class="card-company">Supervan</span><span class="card-date">Mai – Déc 2022</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Restructuration de l'architecture du tunnel d'achat</li><li>Responsable du maintien du Legacy</li><li>Développement de nouvelles fonctionnalités et tests</li></ul><div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">CodeIgniter</span></div></article>
+          <article class="card"><div class="card-header"><span class="card-company">Élée</span><span class="card-date">Sept 2021 – Avr 2022</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Responsable de projet — branche SamBox (sambox.io)</li><li>Réalisation de maquettes XD et développement de nouveaux outils SAP</li></ul><div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">VueJs</span><span class="tag">Bootstrap</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Laravel</span></div></article>
+          <article class="card"><div class="card-header"><span class="card-company">EveDrug</span><span class="card-date">Sept 2020 – Août 2021</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Développement de nouvelles fonctionnalités</li><li>Responsable de projet pour un client grec</li></ul><div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">jQuery</span><span class="tag">Dhtmlx</span></div></article>
+          <article class="card"><div class="card-header"><span class="card-company">HelloMojito</span><span class="card-date">Juil 2019 – Août 2020</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Développement de CRM, BackOffice et nouvelles fonctionnalités</li><li>Tests PHP (approche TDD), développement WordPress</li><li>Génération de graphiques et PDF depuis données Excel</li><li>Développement de campagnes et leads</li></ul><div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">SASS</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">jQuery</span><span class="tag">VueJs</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Laravel</span><span class="tag">WordPress</span></div></article>
+        </div>
+      </section>
+      <section class="section" aria-labelledby="formations-title">
+        <div class="section-header"><span class="section-diamond" aria-hidden="true">◆</span><h2 class="section-title" id="formations-title">Formations</h2><div class="section-divider" aria-hidden="true"></div></div>
+        <div class="cards-list">
+          <article class="card card-formation"><div class="card-header"><span class="card-company">École Webstart</span><span class="card-date">2018 – 2020</span></div><p class="card-subtitle">Développement &amp; Mobile — Paris</p></article>
+          <article class="card card-formation"><div class="card-header"><span class="card-company">Candidat Libre</span><span class="card-date">2017 – 2018</span></div><p class="card-subtitle">Bac STMG</p></article>
+          <article class="card card-formation"><div class="card-header"><span class="card-company">Baruch College</span><span class="card-date">2017</span></div><p class="card-subtitle">Développement Web — New York</p></article>
+          <article class="card card-formation"><div class="card-header"><span class="card-company">Central Yeshuva</span><span class="card-date">2014 – 2017</span></div><p class="card-subtitle">École Rabbinique — New York</p></article>
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer><p>© 2026 Yoel Edelman · <a href="mailto:yoeledelman@gmail.com">yoeledelman@gmail.com</a></p></footer>
+</body>
+</html>
