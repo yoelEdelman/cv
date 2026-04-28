@@ -12,94 +12,462 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Yoel Edelman — Développeur Web Full Stack">
   <meta name="twitter:description" content="6 ans d'expérience. Laravel, VueJs, NuxtJs.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230D1117' rx='4'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='14' fill='%2358A6FF'>YE</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;0,700;1,300&family=Inter:wght@400;500&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #0D1117; --surface: #161B22; --surface-2: #1C2129; --border: #30363D;
-      --primary: #58A6FF; --accent: #3FB950; --warn: #F78166;
-      --text: #F0F6FC; --text-muted: #8B949E; --text-dim: #484F58;
-      --sidebar-w: 300px; --radius: 8px; --radius-sm: 4px;
-      --space-xs: 4px; --space-sm: 8px; --space-md: 16px;
-      --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px;
+      --bg:          #0D1117;
+      --surface:     #161B22;
+      --surface-2:   #1C2129;
+      --border:      #30363D;
+      --primary:     #58A6FF;
+      --accent:      #3FB950;
+      --warn:        #F78166;
+      --text:        #F0F6FC;
+      --text-muted:  #8B949E;
+      --text-dim:    #484F58;
+      --sidebar-w:   300px;
+      --radius:      8px;
+      --radius-sm:   4px;
+      --space-xs:    4px;
+      --space-sm:    8px;
+      --space-md:    16px;
+      --space-lg:    24px;
+      --space-xl:    40px;
+      --space-2xl:   64px;
     }
+
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.9rem; line-height: 1.6; min-height: 100vh; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
     a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
     a:hover { color: var(--primary); text-decoration: underline; }
     a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 2px; }
-    .cv-wrapper { max-width: 1200px; margin: 0 auto; display: flex; min-height: 100vh; padding: var(--space-lg); gap: var(--space-lg); }
-    .sidebar { width: var(--sidebar-w); flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: var(--space-lg); background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); display: flex; flex-direction: column; gap: var(--space-lg); scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+
+    /* Layout */
+    .cv-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      min-height: 100vh;
+      padding: var(--space-lg);
+      gap: var(--space-lg);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: var(--space-lg);
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
     .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
     .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    /* Profile */
     .profile { text-align: center; }
-    .profile-photo { width: 110px; height: 110px; border-radius: 50%; border: 2px solid var(--primary); box-shadow: 0 0 0 4px rgba(88,166,255,0.15); object-fit: cover; margin-bottom: var(--space-md); }
-    .profile h1 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--text); letter-spacing: 0.02em; line-height: 1.2; }
-    .profile-title { font-family: 'Poppins', sans-serif; font-weight: 300; font-style: italic; font-size: 0.9rem; color: var(--text-muted); margin-top: var(--space-xs); }
-    .profile-badge { display: inline-block; margin-top: var(--space-sm); padding: 3px 10px; background: rgba(88,166,255,0.1); color: var(--primary); border-radius: 20px; font-size: 0.78rem; font-family: 'Fira Code', monospace; }
+
+    .profile-photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 0 4px rgba(88,166,255,0.15);
+      object-fit: cover;
+      margin-bottom: var(--space-md);
+    }
+
+    .profile-initials {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 0 4px rgba(88,166,255,0.15);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin: 0 auto var(--space-md);
+    }
+
+    .profile h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    .profile-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: var(--space-xs);
+    }
+
+    .profile-badge {
+      display: inline-block;
+      margin-top: var(--space-sm);
+      padding: 3px 10px;
+      background: rgba(88,166,255,0.1);
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Sidebar section */
     .sidebar-section { display: flex; flex-direction: column; gap: var(--space-sm); }
-    .sidebar-section-title { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary); padding-bottom: var(--space-xs); border-bottom: 1px solid var(--border); }
+
+    .sidebar-section-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--primary);
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Contact */
     .contact-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); }
-    .contact-list li a { display: flex; align-items: center; gap: var(--space-sm); color: var(--text-muted); font-size: 0.82rem; transition: color 0.2s; }
+
+    .contact-list li a {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      transition: color 0.2s;
+    }
     .contact-list li a:hover { color: var(--primary); text-decoration: none; }
+
     .contact-list svg { flex-shrink: 0; width: 14px; height: 14px; }
+
+    /* Specialties */
     .pills { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
-    .pill { padding: 2px 10px; background: rgba(88,166,255,0.1); color: var(--primary); border-radius: 20px; font-size: 0.75rem; font-family: 'Fira Code', monospace; }
-    .pill-green { background: rgba(63,185,80,0.1); color: var(--accent); }
+    .pill {
+      padding: 2px 10px;
+      background: rgba(88,166,255,0.1);
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-family: 'Fira Code', monospace;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .pill-green {
+      background: rgba(63,185,80,0.1);
+      color: var(--accent);
+    }
+
+    /* Skills */
     .skill-group { margin-bottom: var(--space-sm); }
-    .skill-category { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 3px; }
-    .skill-items { font-size: 0.82rem; color: var(--text); line-height: 1.5; }
-    details summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; }
+    .skill-category {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+    .skill-items {
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* Skills accordion mobile */
+    details summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
     details summary::-webkit-details-marker { display: none; }
-    details summary::after { content: '▶'; font-size: 0.7rem; color: var(--text-muted); transition: transform 0.2s; }
+    details summary::after {
+      content: '▶';
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+    }
     details[open] summary::after { transform: rotate(90deg); }
+
+    /* Languages */
     .lang-pills { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
-    .lang-pill { padding: 4px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; font-size: 0.78rem; color: var(--text); }
+    .lang-pill {
+      padding: 4px 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.78rem;
+      color: var(--text);
+    }
+
+    /* Atouts */
     .atouts { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
-    .atout-pill { padding: 4px 10px; background: rgba(63,185,80,0.08); color: var(--accent); border-radius: 20px; font-size: 0.78rem; }
-    .main-content { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--space-xl); padding: var(--space-lg) 0; }
-    .section { animation: fadeInUp 0.4s ease both; }
+    .atout-pill {
+      padding: 4px 10px;
+      background: rgba(63,185,80,0.08);
+      color: var(--accent);
+      border-radius: 20px;
+      font-size: 0.78rem;
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      padding: var(--space-lg) 0;
+    }
+
+    /* Section */
+    .section {
+      animation: fadeInUp 0.4s ease both;
+    }
     .section:nth-child(1) { animation-delay: 0.05s; }
     .section:nth-child(2) { animation-delay: 0.15s; }
     .section:nth-child(3) { animation-delay: 0.25s; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    @media (prefers-reduced-motion: reduce) { .section { animation: none; } }
-    .section-header { display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md); }
-    .section-title { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--primary); }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .section { animation: none; }
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--primary);
+    }
+
     .section-diamond { color: var(--primary); font-size: 0.8rem; }
-    .section-divider { flex: 1; height: 1px; background: var(--border); }
-    .about-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; }
+
+    .section-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* About */
+    .about-text {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
+    /* Experience / Formation cards */
     .cards-list { display: flex; flex-direction: column; gap: var(--space-md); }
-    .card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: var(--radius); padding: var(--space-md); transition: background 0.2s; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius);
+      padding: var(--space-md);
+      transition: background 0.2s;
+    }
     .card:hover { background: var(--surface-2); }
-    .card-formation { border-left-color: var(--accent); }
-    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-sm); margin-bottom: var(--space-xs); flex-wrap: wrap; }
-    .card-company { font-weight: 500; font-size: 0.95rem; color: var(--text); }
-    .card-date { font-family: 'Fira Code', monospace; font-size: 0.78rem; color: var(--warn); white-space: nowrap; }
-    .card-title { font-style: italic; color: var(--text-muted); font-size: 0.85rem; margin-bottom: var(--space-sm); }
-    .card-subtitle { font-size: 0.82rem; color: var(--text-muted); margin-bottom: var(--space-xs); }
-    .card-missions { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: var(--space-sm); }
-    .card-missions li { font-size: 0.875rem; color: var(--text); padding-left: var(--space-md); position: relative; }
-    .card-missions li::before { content: '•'; position: absolute; left: 4px; color: var(--primary); }
+
+    .card-formation {
+      border-left-color: var(--accent);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .card-company {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .card-date {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.78rem;
+      color: var(--warn);
+      white-space: nowrap;
+    }
+
+    .card-title {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .card-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-xs);
+    }
+
+    .card-missions {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .card-missions li {
+      font-size: 0.875rem;
+      color: var(--text);
+      padding-left: var(--space-md);
+      position: relative;
+    }
+
+    .card-missions li::before {
+      content: '•';
+      position: absolute;
+      left: 4px;
+      color: var(--primary);
+    }
+
     .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: var(--space-sm); }
-    .tag { font-family: 'Fira Code', monospace; font-size: 0.72rem; color: var(--accent); background: rgba(63,185,80,0.1); padding: 2px 8px; border-radius: var(--radius-sm); }
-    footer { text-align: center; padding: var(--space-xl) 0 var(--space-lg); color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: var(--space-xl); }
+
+    /* Skill items with icons */
+    .skill-items-list { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+    .skill-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+    .skill-item i, .tag i, .pill i {
+      font-size: 1.1rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      background: rgba(63,185,80,0.1);
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: var(--space-xl) 0 var(--space-lg);
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+      margin-top: var(--space-xl);
+    }
+
+    /* Responsive */
     @media (max-width: 767px) {
-      .cv-wrapper { flex-direction: column; padding: var(--space-md); gap: var(--space-md); }
-      .sidebar { width: 100%; position: static; height: auto; }
-      .profile-photo { width: 90px; height: 90px; }
+      .cv-wrapper {
+        flex-direction: column;
+        padding: var(--space-md);
+        gap: var(--space-md);
+      }
+
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+
+      .profile-photo,
+      .profile-initials {
+        width: 90px;
+        height: 90px;
+      }
+
       .main-content { padding: 0; }
     }
+
+    @media (min-width: 1280px) {
+      .cv-wrapper { padding: var(--space-xl); }
+      .sidebar { width: 300px; }
+    }
+
+    /* Print */
     @media print {
       body { background: #fff; color: #000; font-size: 0.8rem; }
       .cv-wrapper { padding: 0; max-width: none; }
-      .sidebar { background: #f5f5f5; border: 1px solid #ddd; position: static; height: auto; width: 220px; break-inside: avoid; }
-      .section-title, .sidebar-section-title { color: #1a1a1a; }
+      .sidebar {
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        position: static;
+        height: auto;
+        width: 220px;
+        break-inside: avoid;
+      }
+      .section-title { color: #1a1a1a; }
+      .sidebar-section-title { color: #1a1a1a; }
       .card { background: #fff; border-color: #ccc; border-left-color: #333; break-inside: avoid; }
       .card-formation { border-left-color: #555; }
-      .tag, .pill { background: transparent; border: 1px solid #ccc; color: #333; }
-      .lang-pill, .atout-pill, .profile-badge { background: transparent; border: 1px solid #ccc; color: #333; }
+      .tag { background: transparent; border: 1px solid #ccc; color: #333; }
+      .pill { background: transparent; border: 1px solid #ccc; color: #333; }
+      .pill-green { border-color: #666; }
+      .lang-pill { background: transparent; border: 1px solid #ccc; }
+      .atout-pill { background: transparent; border: 1px solid #ccc; color: #333; }
+      .profile-badge { background: transparent; border: 1px solid #ccc; color: #333; }
       a { color: #000; text-decoration: none; }
       a[href^="mailto"]::after { content: " (" attr(href) ")"; font-size: 0.7rem; }
       .section { animation: none; }
@@ -109,39 +477,119 @@
 </head>
 <body>
   <div class="cv-wrapper">
+    <!-- SIDEBAR -->
     <aside class="sidebar" aria-label="Informations personnelles">
+      <!-- Profile -->
       <div class="profile">
-        <img class="profile-photo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCACWAFADASIAAhEBAxEB/8QAHAAAAgMBAQEBAAAAAAAAAAAAAAUEBgcDAgH/xAAyEAACAQMDAwMDAwMFAQAAAAABAgMABBEFEiExBhNBUWEicYGRFCMyQqGxwdHh8P/EABsBAAIDAQEBAAAAAAAAAAAAAAQFAgMGAAH/xAApEQACAgEDAwMEAwAAAAAAAAABAgADEQQSITFBBRMiUWGBkcHR4f/aAAwDAQACEQMRAD8A2WiiiikBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABVHxH4isvD1sJbonc3SNGMM31HtWuqdq+g2Oq2bQXkIdSMBsbgfqKpuqKXuFXTSXuFpF5k+oq0a8SeF/FE1tqSW+oO0kErbQznJjb0NesUoUMkEHkV5deWlxYXT21yhSVDgg1faf4s1OwKoZPaijCZ5A9q8/m3dnpMrGUdVqm7Ev4kl6FTVLq+1C81K2tbeae2tWZJmgjLbWH8hx7VHsdKvNVvI7OzhaWZzwF6D6n0roPgxYdE0VNSuYiLm8YMCw5EfYD+tdhbWsFrF2W8Sh35OOnuaVkfMZ19THRVnzqTFxdTSRJWBLRFbkjuvvTLUI2kspFTl8ZA96nVH0qT7RbFSctGcGr1OkXMz+i3kWoWaXEI+Fug9RVqvJ/Bu1rTxJPp8h5WG5yh9gep/avWK6aFpNhERuDVGiiijQFFFFABRRRQAUUUUAFFFFABRRRQB//2Q==" alt="Photo de Yoel Edelman" width="110" height="110">
+        <img class="profile-photo" src="data:image/jpeg;base64,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" alt="Photo de profil de Yoel Edelman" width="110" height="110">
         <h1>EDELMAN Yoel</h1>
         <p class="profile-title">Développeur Web Full Stack</p>
         <span class="profile-badge">6 ans d'expérience</span>
       </div>
+
+      <!-- Contact -->
       <div class="sidebar-section">
         <p class="sidebar-section-title">Contact</p>
         <ul class="contact-list">
-          <li><a href="tel:0675202887" aria-label="Appeler Yoel Edelman"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.12 1.18 2 2 0 012.11 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.1a16 16 0 006 6l.46-.46a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>06 75 20 28 87</a></li>
-          <li><a href="mailto:yoeledelman@gmail.com" aria-label="Envoyer un email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>yoeledelman@gmail.com</a></li>
-          <li><a href="https://www.google.com/maps/search/75003+Paris" target="_blank" rel="noopener noreferrer" aria-label="Localisation Paris"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>61 Bvd Beaumarchais, 75003 Paris</a></li>
+          <li>
+            <a href="tel:0675202887" aria-label="Appeler Yoel Edelman">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.12 1.18 2 2 0 012.11 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.1a16 16 0 006 6l.46-.46a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              06 75 20 28 87
+            </a>
+          </li>
+          <li>
+            <a href="mailto:yoeledelman@gmail.com" aria-label="Envoyer un email à Yoel Edelman">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              yoeledelman@gmail.com
+            </a>
+          </li>
+          <li>
+            <a href="https://www.google.com/maps/search/75003+Paris" target="_blank" rel="noopener noreferrer" aria-label="Localisation : 75003 Paris">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              61 Bvd Beaumarchais, 75003 Paris
+            </a>
+          </li>
         </ul>
       </div>
+
+      <!-- Spécialités -->
       <div class="sidebar-section">
         <p class="sidebar-section-title">Spécialités</p>
-        <div class="pills"><span class="pill">Laravel</span><span class="pill">VueJs</span></div>
+        <div class="pills">
+          <span class="pill"><i class="devicon-laravel-plain colored"></i> Laravel</span>
+          <span class="pill"><i class="devicon-vuejs-plain colored"></i> VueJs</span>
+        </div>
       </div>
+
+      <!-- Compétences -->
       <div class="sidebar-section">
         <p class="sidebar-section-title">Compétences</p>
         <details open>
-          <summary class="sidebar-section-title" style="font-size:0.7rem;border:none;padding:0;margin-bottom:var(--space-sm)">Voir les compétences</summary>
-          <div style="margin-top:var(--space-sm);display:flex;flex-direction:column;gap:var(--space-sm)">
-            <div class="skill-group"><p class="skill-category">Langages</p><p class="skill-items">HTML · CSS · SASS · JavaScript · PHP · WordPress</p></div>
-            <div class="skill-group"><p class="skill-category">Frameworks</p><p class="skill-items">Laravel · Symfony · Twig · VueJs · NuxtJs · Vuetify · Bootstrap · Tailwind · jQuery · Angular</p></div>
-            <div class="skill-group"><p class="skill-category">Base de données</p><p class="skill-items">MySQL · MariaDB · PostgreSQL · AWS · Firebase</p></div>
-            <div class="skill-group"><p class="skill-category">CI / CD</p><p class="skill-items">GitHub · GitLab · Docker</p></div>
-            <div class="skill-group"><p class="skill-category">Design</p><p class="skill-items">Figma · Adobe XD</p></div>
-            <div class="skill-group"><p class="skill-category">Mobile</p><p class="skill-items">React-Native · Ionic</p></div>
+          <summary class="sidebar-section-title" style="font-size:0.7rem; border:none; padding:0; margin-bottom: var(--space-sm);">Voir les compétences</summary>
+          <div style="margin-top: var(--space-sm); display:flex; flex-direction:column; gap: var(--space-sm);">
+            <div class="skill-group">
+              <p class="skill-category">Langages</p>
+              <div class="skill-items-list">
+                <span class="skill-item"><i class="devicon-html5-plain colored"></i> HTML</span>
+                <span class="skill-item"><i class="devicon-css3-plain colored"></i> CSS</span>
+                <span class="skill-item"><i class="devicon-sass-original colored"></i> SASS</span>
+                <span class="skill-item"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+                <span class="skill-item"><i class="devicon-php-plain colored"></i> PHP</span>
+                <span class="skill-item"><i class="devicon-wordpress-plain colored"></i> WordPress</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <p class="skill-category">Frameworks</p>
+              <div class="skill-items-list">
+                <span class="skill-item"><i class="devicon-laravel-plain colored"></i> Laravel</span>
+                <span class="skill-item"><i class="devicon-symfony-original colored"></i> Symfony</span>
+                <span class="skill-item">Twig</span>
+                <span class="skill-item"><i class="devicon-vuejs-plain colored"></i> VueJs</span>
+                <span class="skill-item"><i class="devicon-nuxtjs-plain colored"></i> NuxtJs</span>
+                <span class="skill-item"><i class="devicon-vuetify-plain colored"></i> Vuetify</span>
+                <span class="skill-item"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
+                <span class="skill-item"><i class="devicon-tailwindcss-plain colored"></i> Tailwind</span>
+                <span class="skill-item"><i class="devicon-jquery-plain colored"></i> jQuery</span>
+                <span class="skill-item"><i class="devicon-angularjs-plain colored"></i> Angular</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <p class="skill-category">Base de données</p>
+              <div class="skill-items-list">
+                <span class="skill-item"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+                <span class="skill-item"><i class="devicon-mariadb-original colored"></i> MariaDB</span>
+                <span class="skill-item"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                <span class="skill-item"><i class="devicon-amazonwebservices-plain colored"></i> AWS</span>
+                <span class="skill-item"><i class="devicon-firebase-plain colored"></i> Firebase</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <p class="skill-category">CI / CD</p>
+              <div class="skill-items-list">
+                <span class="skill-item"><i class="devicon-github-original"></i> GitHub</span>
+                <span class="skill-item"><i class="devicon-gitlab-plain colored"></i> GitLab</span>
+                <span class="skill-item"><i class="devicon-docker-plain colored"></i> Docker</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <p class="skill-category">Design</p>
+              <div class="skill-items-list">
+                <span class="skill-item"><i class="devicon-figma-plain colored"></i> Figma</span>
+                <span class="skill-item"><i class="devicon-xd-plain colored"></i> Adobe XD</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <p class="skill-category">Mobile</p>
+              <div class="skill-items-list">
+                <span class="skill-item"><i class="devicon-react-original colored"></i> React-Native</span>
+                <span class="skill-item"><i class="devicon-ionic-original colored"></i> Ionic</span>
+              </div>
+            </div>
           </div>
         </details>
       </div>
+
+      <!-- Langues -->
       <div class="sidebar-section">
         <p class="sidebar-section-title">Langues</p>
         <div class="lang-pills">
@@ -150,39 +598,259 @@
           <span class="lang-pill" role="img" aria-label="Hébreu">🇮🇱 Hébreu</span>
         </div>
       </div>
+
+      <!-- Atouts -->
       <div class="sidebar-section">
         <p class="sidebar-section-title">Atouts</p>
-        <div class="atouts"><span class="atout-pill">Autonome</span><span class="atout-pill">Rigoureux</span><span class="atout-pill">Vif</span></div>
+        <div class="atouts">
+          <span class="atout-pill">Autonome</span>
+          <span class="atout-pill">Rigoureux</span>
+          <span class="atout-pill">Vif</span>
+        </div>
       </div>
     </aside>
+
+    <!-- MAIN CONTENT -->
     <main class="main-content" aria-label="Contenu principal du CV">
+
+      <!-- À propos -->
       <section class="section" aria-labelledby="about-title">
-        <div class="section-header"><span class="section-diamond" aria-hidden="true">◆</span><h2 class="section-title" id="about-title">À propos</h2><div class="section-divider" aria-hidden="true"></div></div>
-        <p class="about-text">Passionné par la création de solutions digitales innovantes, j'accompagne mes clients dans la conception et le développement de projets sur mesure. Grâce à mon adaptabilité et ma capacité d'anticipation, je propose des solutions pertinentes et assure la réussite de chaque mission.</p>
+        <div class="section-header">
+          <span class="section-diamond" aria-hidden="true">◆</span>
+          <h2 class="section-title" id="about-title">À propos</h2>
+          <div class="section-divider" aria-hidden="true"></div>
+        </div>
+        <p class="about-text">
+          Passionné par la création de solutions digitales innovantes, j'accompagne mes clients dans la conception et le développement de projets sur mesure. Grâce à mon adaptabilité et ma capacité d'anticipation, je propose des solutions pertinentes et assure la réussite de chaque mission.
+        </p>
       </section>
+
+      <!-- Expériences -->
       <section class="section" aria-labelledby="exp-title">
-        <div class="section-header"><span class="section-diamond" aria-hidden="true">◆</span><h2 class="section-title" id="exp-title">Expériences</h2><div class="section-divider" aria-hidden="true"></div></div>
+        <div class="section-header">
+          <span class="section-diamond" aria-hidden="true">◆</span>
+          <h2 class="section-title" id="exp-title">Expériences</h2>
+          <div class="section-divider" aria-hidden="true"></div>
+        </div>
         <div class="cards-list">
-          <article class="card"><div class="card-header"><span class="card-company">AXA France</span><span class="card-date">Juin – Déc 2024</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Refonte de la plateforme interne de formation</li><li>Intégration de maquettes Figma</li><li>Développement de nouvelles fonctionnalités</li><li>API REST</li><li>Migration VueJS 2 → 3</li></ul><div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">SASS</span><span class="tag">JavaScript</span><span class="tag">VueJs</span><span class="tag">Vuetify</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">API REST</span></div></article>
-          <article class="card"><div class="card-header"><span class="card-company">Reenbow</span><span class="card-date">Juil 2023 – Mai 2024</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Développement de la plateforme LMS</li><li>Restructuration de l'existant et prise en charge de la dette technique</li><li>Migration PHP 7 → 8, Laravel 8 → 9</li><li>Intégration de maquettes Figma</li></ul><div class="card-tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">JavaScript</span><span class="tag">VueJs</span><span class="tag">Vuetify</span><span class="tag">MySQL</span><span class="tag">AWS</span></div></article>
-          <article class="card"><div class="card-header"><span class="card-company">Chanel</span><span class="card-date">Jan – Juin 2023</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Développement d'une plateforme digitale de gestion des réservations clients VIP</li><li>Développement V2 &amp; V3, refonte du système de facturation Stripe</li><li>Migration PHP 7 → 8, Symfony 5 → 6</li></ul><div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">jQuery</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Symfony</span></div></article>
-          <article class="card"><div class="card-header"><span class="card-company">Supervan</span><span class="card-date">Mai – Déc 2022</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Restructuration de l'architecture du tunnel d'achat</li><li>Responsable du maintien du Legacy</li><li>Développement de nouvelles fonctionnalités et tests</li></ul><div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">CodeIgniter</span></div></article>
-          <article class="card"><div class="card-header"><span class="card-company">Élée</span><span class="card-date">Sept 2021 – Avr 2022</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Responsable de projet — branche SamBox (sambox.io)</li><li>Réalisation de maquettes XD et développement de nouveaux outils SAP</li></ul><div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">VueJs</span><span class="tag">Bootstrap</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Laravel</span></div></article>
-          <article class="card"><div class="card-header"><span class="card-company">EveDrug</span><span class="card-date">Sept 2020 – Août 2021</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Développement de nouvelles fonctionnalités</li><li>Responsable de projet pour un client grec</li></ul><div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">jQuery</span><span class="tag">Dhtmlx</span></div></article>
-          <article class="card"><div class="card-header"><span class="card-company">HelloMojito</span><span class="card-date">Juil 2019 – Août 2020</span></div><p class="card-title">Développeur Full Stack</p><ul class="card-missions"><li>Développement de CRM, BackOffice et nouvelles fonctionnalités</li><li>Tests PHP (approche TDD), développement WordPress</li><li>Génération de graphiques et PDF depuis données Excel</li><li>Développement de campagnes et leads</li></ul><div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">SASS</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">jQuery</span><span class="tag">VueJs</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Laravel</span><span class="tag">WordPress</span></div></article>
+
+          <article class="card">
+            <div class="card-header">
+              <span class="card-company">AXA France</span>
+              <span class="card-date">Juin – Déc 2024</span>
+            </div>
+            <p class="card-title">Développeur Full Stack</p>
+            <ul class="card-missions">
+              <li>Refonte de la plateforme interne de formation</li>
+              <li>Intégration de maquettes Figma</li>
+              <li>Développement de nouvelles fonctionnalités</li>
+              <li>API REST</li>
+              <li>Migration VueJS 2 → 3</li>
+            </ul>
+            <div class="card-tags">
+              <span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span>
+              <span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+              <span class="tag"><i class="devicon-sass-original colored"></i> SASS</span>
+              <span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+              <span class="tag"><i class="devicon-vuejs-plain colored"></i> VueJs</span>
+              <span class="tag"><i class="devicon-vuetify-plain colored"></i> Vuetify</span>
+              <span class="tag"><i class="devicon-php-plain colored"></i> PHP</span>
+              <span class="tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+              <span class="tag">API REST</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <span class="card-company">Reenbow</span>
+              <span class="card-date">Juil 2023 – Mai 2024</span>
+            </div>
+            <p class="card-title">Développeur Full Stack</p>
+            <ul class="card-missions">
+              <li>Développement de la plateforme LMS</li>
+              <li>Restructuration de l'existant et prise en charge de la dette technique</li>
+              <li>Migration PHP 7 → 8, Laravel 8 → 9</li>
+              <li>Intégration de maquettes Figma</li>
+            </ul>
+            <div class="card-tags">
+              <span class="tag"><i class="devicon-php-plain colored"></i> PHP</span>
+              <span class="tag"><i class="devicon-laravel-plain colored"></i> Laravel</span>
+              <span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+              <span class="tag"><i class="devicon-vuejs-plain colored"></i> VueJs</span>
+              <span class="tag"><i class="devicon-vuetify-plain colored"></i> Vuetify</span>
+              <span class="tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+              <span class="tag"><i class="devicon-amazonwebservices-plain colored"></i> AWS</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <span class="card-company">Chanel</span>
+              <span class="card-date">Jan – Juin 2023</span>
+            </div>
+            <p class="card-title">Développeur Full Stack</p>
+            <ul class="card-missions">
+              <li>Développement d'une plateforme digitale de gestion des réservations clients VIP</li>
+              <li>Développement V2 &amp; V3, refonte du système de facturation Stripe</li>
+              <li>Migration PHP 7 → 8, Symfony 5 → 6</li>
+            </ul>
+            <div class="card-tags">
+              <span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span>
+              <span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+              <span class="tag"><i class="devicon-jquery-plain colored"></i> jQuery</span>
+              <span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+              <span class="tag"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
+              <span class="tag"><i class="devicon-php-plain colored"></i> PHP</span>
+              <span class="tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+              <span class="tag"><i class="devicon-symfony-original colored"></i> Symfony</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <span class="card-company">Supervan</span>
+              <span class="card-date">Mai – Déc 2022</span>
+            </div>
+            <p class="card-title">Développeur Full Stack</p>
+            <ul class="card-missions">
+              <li>Restructuration de l'architecture du tunnel d'achat</li>
+              <li>Responsable du maintien du Legacy</li>
+              <li>Développement de nouvelles fonctionnalités et tests</li>
+            </ul>
+            <div class="card-tags">
+              <span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span>
+              <span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+              <span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+              <span class="tag"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
+              <span class="tag"><i class="devicon-php-plain colored"></i> PHP</span>
+              <span class="tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+              <span class="tag"><i class="devicon-codeigniter-plain colored"></i> CodeIgniter</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <span class="card-company">Élée</span>
+              <span class="card-date">Sept 2021 – Avr 2022</span>
+            </div>
+            <p class="card-title">Développeur Full Stack</p>
+            <ul class="card-missions">
+              <li>Responsable de projet — branche SamBox (sambox.io) pour l'outil SAP d'identités visuelles</li>
+              <li>Réalisation de maquettes XD et développement de nouveaux outils SAP</li>
+            </ul>
+            <div class="card-tags">
+              <span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span>
+              <span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+              <span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+              <span class="tag"><i class="devicon-vuejs-plain colored"></i> VueJs</span>
+              <span class="tag"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
+              <span class="tag"><i class="devicon-php-plain colored"></i> PHP</span>
+              <span class="tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+              <span class="tag"><i class="devicon-laravel-plain colored"></i> Laravel</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <span class="card-company">EveDrug</span>
+              <span class="card-date">Sept 2020 – Août 2021</span>
+            </div>
+            <p class="card-title">Développeur Full Stack</p>
+            <ul class="card-missions">
+              <li>Développement de nouvelles fonctionnalités</li>
+              <li>Responsable de projet pour un client grec</li>
+            </ul>
+            <div class="card-tags">
+              <span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span>
+              <span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+              <span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+              <span class="tag"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
+              <span class="tag"><i class="devicon-php-plain colored"></i> PHP</span>
+              <span class="tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+              <span class="tag"><i class="devicon-jquery-plain colored"></i> jQuery</span>
+              <span class="tag">Dhtmlx</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <span class="card-company">HelloMojito</span>
+              <span class="card-date">Juil 2019 – Août 2020</span>
+            </div>
+            <p class="card-title">Développeur Full Stack</p>
+            <ul class="card-missions">
+              <li>Développement de CRM, BackOffice et nouvelles fonctionnalités</li>
+              <li>Tests PHP (approche TDD), développement WordPress</li>
+              <li>Génération de graphiques et PDF depuis données Excel</li>
+              <li>Développement de campagnes et leads</li>
+            </ul>
+            <div class="card-tags">
+              <span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span>
+              <span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+              <span class="tag"><i class="devicon-sass-original colored"></i> SASS</span>
+              <span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+              <span class="tag"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
+              <span class="tag"><i class="devicon-jquery-plain colored"></i> jQuery</span>
+              <span class="tag"><i class="devicon-vuejs-plain colored"></i> VueJs</span>
+              <span class="tag"><i class="devicon-php-plain colored"></i> PHP</span>
+              <span class="tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+              <span class="tag"><i class="devicon-laravel-plain colored"></i> Laravel</span>
+              <span class="tag"><i class="devicon-wordpress-plain colored"></i> WordPress</span>
+            </div>
+          </article>
+
         </div>
       </section>
+
+      <!-- Formations -->
       <section class="section" aria-labelledby="formations-title">
-        <div class="section-header"><span class="section-diamond" aria-hidden="true">◆</span><h2 class="section-title" id="formations-title">Formations</h2><div class="section-divider" aria-hidden="true"></div></div>
+        <div class="section-header">
+          <span class="section-diamond" aria-hidden="true">◆</span>
+          <h2 class="section-title" id="formations-title">Formations</h2>
+          <div class="section-divider" aria-hidden="true"></div>
+        </div>
         <div class="cards-list">
-          <article class="card card-formation"><div class="card-header"><span class="card-company">École Webstart</span><span class="card-date">2018 – 2020</span></div><p class="card-subtitle">Développement &amp; Mobile — Paris</p></article>
-          <article class="card card-formation"><div class="card-header"><span class="card-company">Candidat Libre</span><span class="card-date">2017 – 2018</span></div><p class="card-subtitle">Bac STMG</p></article>
-          <article class="card card-formation"><div class="card-header"><span class="card-company">Baruch College</span><span class="card-date">2017</span></div><p class="card-subtitle">Développement Web — New York</p></article>
-          <article class="card card-formation"><div class="card-header"><span class="card-company">Central Yeshuva</span><span class="card-date">2014 – 2017</span></div><p class="card-subtitle">École Rabbinique — New York</p></article>
+
+          <article class="card card-formation">
+            <div class="card-header">
+              <span class="card-company">École Webstart</span>
+              <span class="card-date">2018 – 2020</span>
+            </div>
+            <p class="card-subtitle">Développement &amp; Mobile — Paris</p>
+          </article>
+
+          <article class="card card-formation">
+            <div class="card-header">
+              <span class="card-company">Candidat Libre</span>
+              <span class="card-date">2017 – 2018</span>
+            </div>
+            <p class="card-subtitle">Bac STMG</p>
+          </article>
+
+          <article class="card card-formation">
+            <div class="card-header">
+              <span class="card-company">Baruch College</span>
+              <span class="card-date">2017</span>
+            </div>
+            <p class="card-subtitle">Développement Web — New York</p>
+          </article>
+
+          <article class="card card-formation">
+            <div class="card-header">
+              <span class="card-company">Central Yeshuva</span>
+              <span class="card-date">2014 – 2017</span>
+            </div>
+            <p class="card-subtitle">École Rabbinique — New York</p>
+          </article>
+
         </div>
       </section>
+
     </main>
   </div>
-  <footer><p>© 2026 Yoel Edelman · <a href="mailto:yoeledelman@gmail.com">yoeledelman@gmail.com</a></p></footer>
+
+  <footer>
+    <p>© 2026 Yoel Edelman · <a href="mailto:yoeledelman@gmail.com">yoeledelman@gmail.com</a></p>
+  </footer>
 </body>
 </html>
